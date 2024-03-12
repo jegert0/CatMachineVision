@@ -8,11 +8,11 @@ import urllib
 
 options = uc.ChromeOptions()
 driver = uc.Chrome(options=options, version_main=122)
-maxPage = 76
+maxPage = 100
 
-for page in range(26,maxPage):
-    url = "https://www.petfinder.com/search/cats-for-adoption/us/fl/tampa/?page={}".format(page)
-
+for page in range(90,maxPage):
+    #url = "https://www.petfinder.com/search/cats-for-adoption/us/fl/tampa/?page={}".format(page)
+    url = "https://www.petfinder.com/search/dogs-for-adoption/us/fl/tampa/?page={}".format(page)
     driver.get(url)
 
     prev_height = -1
@@ -38,13 +38,13 @@ for page in range(26,maxPage):
     for img in img_results:
         img_urls.append(img.get_attribute('src'))
 
-    folderPath = "C:/Users/jeger/grams/Cats/Pics/"
+    folderPath = "./Pics/"
 
     print(len(img_urls))
 
     for i in range(50):
         try:
-            urllib.request.urlretrieve(str(img_urls[i]), folderPath + "cat_{0}_{1}.jpg".format(page, i))
+            urllib.request.urlretrieve(str(img_urls[i]), folderPath + "dog_{0}_{1}.jpg".format(page, i))
         except:
             continue
 
